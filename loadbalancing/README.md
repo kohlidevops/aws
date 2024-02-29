@@ -10,6 +10,10 @@
 
 ###### Ramya
 
+```
+sudo apt-get update -y
+sudo apt-get install zip unzip -y
+```
 
 
 
