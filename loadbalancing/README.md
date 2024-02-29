@@ -15,6 +15,8 @@ sudo apt-get update -y
 sudo apt-get install zip unzip -y
 ```
 
+![image](https://github.com/kohlidevops/aws/assets/100069489/11653966-4036-4081-9805-3025a4af59c5)
+
 
 
 
