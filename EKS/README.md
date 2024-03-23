@@ -142,3 +142,4 @@ eksctl create cluster --name demo-cluster-1 --region us-east-2 --fargate
 
 
 
+
