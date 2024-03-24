@@ -79,3 +79,99 @@ It could be a single container or multiple related containers that need to work 
 
 It helps us to maintain a specified number of running tasks simultaneously, ensuring high availability and load balancing for your applications.
 
+### How to deploy application on Amazon ECS
+
+Sample application is available in below link
+
+```
+https://github.com/kohlidevops/aws/tree/main/ECS
+```
+
+Logon to AWS console and Navigate to ECS dashboard - Create Cluster
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/fc2bf6d2-9f80-4c0e-a4f1-5ef77a683a0e)
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/71b168a1-7061-40e7-873d-69c102eeb7ed)
+
+Then - Create a custer.
+
+#### To create a ECR registry
+
+You can use below link to create and configure the ECR in AWS
+
+```
+https://github.com/kohlidevops/aws/blob/main/ECR/README.md
+```
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/ef839920-6c23-4bf3-ade2-20a21f5b533f)
+
+Im using Cloudshell to push the application to ECR and placed my files inside CLoudShell
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/270be422-748a-41a1-9a3d-de7fcfe79af1)
+
+To logon to ECR
+
+```
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-2.amazonaws.com
+```
+
+To build the docker image
+
+```
+docker build -t latchudevops .
+```
+
+To tag your image before pushing
+
+```
+docker tag latchudevops:latest <account-id>.dkr.ecr.us-east-2.amazonaws.com/latchudevops:latest
+```
+
+To push the docker image to ECR
+
+```
+docker push <account-id>.dkr.ecr.us-east-2.amazonaws.com/latchudevops:latest
+```
+
+Docker image has been pushed onto ECR
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/3696b2b4-a347-4d8a-b204-8bcbe86da857)
+
+#### To create a Task definition in ECS cluster
+
+Already we have created ECS cluster. Now I need to create a Task definition.
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/aca0d614-e9c3-4441-a2b2-b507371fd0e6)
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/4e6dc528-6bec-4499-84db-3d59e6964c9b)
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/4b8b4929-ae05-4a0f-8f7d-7e5c61912674)
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/f83f680c-7145-46fc-818c-b820abc87535)
+
+Time to feed the container details.
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/84a76350-4c68-4d82-bf34-6b1a1fb3c0af)
+
+If we integrate with cloudwatch logs, then we can start to analyse with cloudwatch logs if any issues occurred.
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/1e496e73-dec0-4467-ab31-d6e539c227ca)
+
+Finally create a Task definition.
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/15a7f61b-6208-469b-a799-2b514bfea188)
+
+Task definition has been created.
+
+#### To run a Task
+
+Launch type should be Fargate
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/a9323471-0bef-469c-8aaa-983b2e201e68)
+
+Go to Task definition - select - your Task definition - select - Deploy - Run a Task
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/3c4e652d-bbb9-4d2a-ad68-8a6378c57402)
+
+If you want override any configuration then do changes and create a Task
+
