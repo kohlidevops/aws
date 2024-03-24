@@ -175,3 +175,10 @@ Go to Task definition - select - your Task definition - select - Deploy - Run a 
 
 If you want override any configuration then do changes and create a Task
 
+![image](https://github.com/kohlidevops/aws/assets/100069489/355d1d3e-d3fa-4e03-851d-cc43807f48ce)
+
+It is running state. If you can check with cloudwatch logs
+
+![image](https://github.com/kohlidevops/aws/assets/100069489/6748b553-669e-4f39-90fd-962b7e3ac23e)
+
+That's it
